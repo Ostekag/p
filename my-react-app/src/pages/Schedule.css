@@ -1,0 +1,74 @@
+/* Заголовок крупный, как на About и Объявления */
+.hero-title {
+  font-size: clamp(2.2rem, 4vw, 4rem);
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  margin-bottom: 24px;
+  color: #2a2236;
+}
+
+/* Сетка карточек */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 18px;
+}
+
+/* Карточки расписания */
+.schedule-card {
+  padding: 20px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(139, 92, 246, 0.12);
+  box-shadow: 0 10px 25px rgba(139, 92, 246, 0.08);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.schedule-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 34px rgba(139, 92, 246, 0.14);
+}
+
+/* Заголовок предмета */
+.schedule-card h3 {
+  margin-top: 0;
+  margin-bottom: 16px;
+  font-size: 1.6rem;
+  color: #2a2236;
+  line-height: 1.2;
+}
+
+/* Текст внутри карточки */
+.schedule-card p {
+  margin: 0 0 12px;
+  line-height: 1.7;
+  font-size: 1.1rem;
+  color: #4b5563;
+}
+
+.schedule-card b {
+  color: #1f2937;
+}
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.filters select {
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(139, 92, 246, 0.12);
+  background: rgba(255, 255, 255, 0.9);
+  font-size: 1rem;
+  outline: none;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.filters select:hover {
+  border-color: rgba(139, 92, 246, 0.4);
+}

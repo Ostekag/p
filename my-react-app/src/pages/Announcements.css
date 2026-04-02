@@ -1,0 +1,52 @@
+.announcement-card {
+  padding: 20px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(139, 92, 246, 0.12);
+  box-shadow: 0 10px 25px rgba(139, 92, 246, 0.08);
+  margin-bottom: 18px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.hero-title {
+  font-size: clamp(2.2rem, 4vw, 4rem); /* такой же размер, как в About.jsx */
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  margin-bottom: 24px;
+  color: #2a2236; /* можно под цвет заголовка на About */
+}
+
+.announcement-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 34px rgba(139, 92, 246, 0.14);
+}
+
+/* Заголовки как на о колледже */
+.announcement-card h3 {
+  margin-top: 0;
+  margin-bottom: 16px;
+  font-size: 1.6rem; /* одинаковый размер, как в About.jsx */
+  color: #040207;
+  line-height: 1.2;
+}
+
+/* Текст как на о колледже */
+.announcement-card p {
+  margin: 0 0 20px;
+  line-height: 1.7;
+  color: #4b5563;
+  font-size: 1.1rem; /* одинаковый размер с About.jsx */
+}
+
+.announcement-card small {
+  color: #6b7280;
+  font-size: 0.95rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 18px;
+}
