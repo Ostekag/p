@@ -4,7 +4,7 @@ import api from "../services/api";
 
 function Login({ setToken }) {
   const [form, setForm] = useState({ email: "", password: "" });
-  const [result, setResult] = useState("");
+  const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
@@ -13,19 +13,23 @@ function Login({ setToken }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    setResult("");
+    setError("");
 
     try {
+      // Отправляем запрос на /api/auth/login (префикс /auth берется из api сервиса)
       const res = await api.post("/auth/login", form);
-      const { token, user } = res.data;
+      
+      const { token } = res.data;
 
+      // Сохраняем данные
       localStorage.setItem("token", token);
-      setToken(token); // Navbar сразу обновится
+      setToken(token); 
 
-      setResult(`Вход выполнен. Добро пожаловать, ${user.name}!`);
-      setTimeout(() => navigate("/news"), 1000);
+      // Перенаправляем пользователя
+      navigate("/news");
     } catch (err) {
-      setResult(err.response?.data?.message || "Ошибка входа");
+      // Выводим ошибку из бэкенда ("Пользователь не найден" или "Неверный пароль")
+      setError(err.response?.data?.message || "Ошибка входа");
     } finally {
       setLoading(false);
     }
@@ -33,13 +37,31 @@ function Login({ setToken }) {
 
   return (
     <div className="container page">
-      <h1>Вход</h1>
-      <form className="form" onSubmit={handleSubmit}>
-        <input type="email" name="email" placeholder="Email" value={form.email} onChange={handleChange} required />
-        <input type="password" name="password" placeholder="Пароль" value={form.password} onChange={handleChange} required />
-        <button type="submit" disabled={loading}>{loading ? "Вход..." : "Войти"}</button>
-      </form>
-      {result && <p>{result}</p>}
+      <div className="auth-card">
+        <h1>Вход</h1>
+        <form className="form" onSubmit={handleSubmit}>
+          <input 
+            type="email" 
+            name="email" 
+            placeholder="Email" 
+            value={form.email} 
+            onChange={handleChange} 
+            required 
+          />
+          <input 
+            type="password" 
+            name="password" 
+            placeholder="Пароль" 
+            value={form.password} 
+            onChange={handleChange} 
+            required 
+          />
+          <button type="submit" disabled={loading}>
+            {loading ? "Вход..." : "Войти"}
+          </button>
+        </form>
+        {error && <p className="error-message" style={{ color: 'red', marginTop: '10px' }}>{error}</p>}
+      </div>
     </div>
   );
 }

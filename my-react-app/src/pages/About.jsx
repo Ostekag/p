@@ -50,7 +50,7 @@ function About() {
       </div>
 
       <div className="section about-image">
-        <img src="/college-building.jpg" alt="Здание колледжа" />
+        
       </div>
     </div>
   );
